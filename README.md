@@ -1,6 +1,12 @@
 # Sloth common sli plugins
 
-A collection of common [Sloth] [SLI plugins][sli-plugins].
+[![CI](https://github.com/slok/sloth-common-sli-plugins/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/slok/sloth-common-sli-plugins/actions/workflows/ci.yaml)
+[![Go Report Card](https://goreportcard.com/badge/github.com/slok/sloth-common-sli-plugins)](https://goreportcard.com/report/github.com/slok/sloth-common-sli-plugins)
+[![Apache 2 licensed](https://img.shields.io/badge/license-Apache2-blue.svg)](https://raw.githubusercontent.com/slok/sloth-common-sli-plugins/master/LICENSE)
+
+## Introduction
+
+A collection of common [Sloth] [SLI plugins][sli-plugins] ready to be used on Sloth manifests, or used as examples to create your own.
 
 ## Getting started
 
