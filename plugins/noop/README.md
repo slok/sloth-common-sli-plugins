@@ -6,6 +6,10 @@ A plugin that always returns a queyr that will return 0. the aim of this plugin 
 
 Doesn't have any options.
 
+## Metric requirements
+
+Doesn't have any metric requirements.
+
 ## Usage examples
 
 ```yaml

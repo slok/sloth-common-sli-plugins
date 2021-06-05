@@ -8,6 +8,10 @@ You can get more information on the [SRE workbook `Alert on burn rate`][examples
 
 - `burn_rate`: (**Required**) A number that tells the burn rate factor (e.g: `1`, `2`, `10`...).
 
+## Metric requirements
+
+Doesn't have any metric requirements.
+
 ## Usage examples
 
 ### 0.5x speed `30d` window, consumed in `60d`

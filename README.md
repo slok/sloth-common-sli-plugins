@@ -28,6 +28,7 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
 - Kubernetes
   - Apiserver
     - [Availability](./plugins/kubernetes/apiserver/availability): Availability SLI based on API HTTP requests.
+    - [Latency](./plugins/kubernetes/apiserver/latency): Latency SLI based on API HTTP requests.
 - [Noop](./plugins/noop): Example/placeholder that doesn't do anything.
 
 ## Contributing
@@ -41,6 +42,7 @@ You can contribute with new plugins the same way the ones in [plugins](./plugins
 - Add a `README.md` on the group and/or the plugin dir and reference the plugin in this readme in [plugins](#plugins) section. the readme should have for each plugin at least ([example](./plugins/noop/README.md)):
   - Introduction.
   - Options.
+  - Metric requirements.
   - Usage examples.
 
 You can execute these to test it while developing:

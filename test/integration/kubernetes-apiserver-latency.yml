@@ -1,0 +1,29 @@
+version: "prometheus/v1"
+service: "kubernetes_apiserver_latency_plugin_integration_test"
+slos:
+  - name: "test-no-filter"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth_common/kubernetes/apiserver/latency"
+        options:
+          bucket: "0.2"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
+
+  - name: "test-with-filter"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth_common/kubernetes/apiserver/latency"
+        options:
+          bucket: "0.4"
+          filter: job="k8sapiserver",env="production",cluster="k8s-42"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
