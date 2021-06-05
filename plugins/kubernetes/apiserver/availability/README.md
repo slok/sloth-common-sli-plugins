@@ -10,6 +10,10 @@ In other words, it counts as good events the <500 and !429 HTTP response status 
 
 - `filter`: (**Optional**) A prometheus filter string using concatenated labels (e.g: `job="k8sapiserver",env="production",cluster="k8s-42"`)
 
+## Metric requirements
+
+- `apiserver_request_total`.
+
 ## Usage examples
 
 ### Without filter
