@@ -1,0 +1,28 @@
+version: "prometheus/v1"
+service: "fake_plugin_integration_test"
+slos:
+  - name: "test-1x"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth_common/fake"
+        options:
+          burn_rate: "1"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
+
+  - name: "test-1000x"
+    objective: 99
+    sli:
+      plugin:
+        id: "sloth_common/fake"
+        options:
+          burn_rate: "1000"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
