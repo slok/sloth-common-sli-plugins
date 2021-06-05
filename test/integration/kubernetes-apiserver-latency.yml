@@ -5,7 +5,7 @@ slos:
     objective: 99.9
     sli:
       plugin:
-        id: "sloth_common/kubernetes/apiserver/latency"
+        id: "sloth-common/kubernetes/apiserver/latency"
         options:
           bucket: "0.2"
     alerting:
@@ -18,7 +18,7 @@ slos:
     objective: 99.9
     sli:
       plugin:
-        id: "sloth_common/kubernetes/apiserver/latency"
+        id: "sloth-common/kubernetes/apiserver/latency"
         options:
           bucket: "0.4"
           filter: job="k8sapiserver",env="production",cluster="k8s-42"

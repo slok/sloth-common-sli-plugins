@@ -12,7 +12,7 @@ import (
 
 const (
 	SLIPluginVersion = "prometheus/v1"
-	SLIPluginID      = "sloth_common/kubernetes/apiserver/latency"
+	SLIPluginID      = "sloth-common/kubernetes/apiserver/latency"
 )
 
 var queryTpl = template.Must(template.New("").Parse(`

@@ -11,7 +11,7 @@ import (
 
 const (
 	SLIPluginVersion = "prometheus/v1"
-	SLIPluginID      = "sloth_common/kubernetes/apiserver/availability"
+	SLIPluginID      = "sloth-common/kubernetes/apiserver/availability"
 )
 
 var queryTpl = template.Must(template.New("").Parse(`

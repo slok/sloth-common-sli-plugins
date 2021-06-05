@@ -23,7 +23,7 @@ For example if the bucket is `0.2`, We will measure as an error, the requests th
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/kubernetes/apiserver/latency"
+    id: "sloth-common/kubernetes/apiserver/latency"
     options:
       bucket: "0.05"
 ```
@@ -33,7 +33,7 @@ sli:
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/kubernetes/apiserver/latency"
+    id: "sloth-common/kubernetes/apiserver/latency"
     options:
       bucket: "0.2"
 ```
@@ -43,7 +43,7 @@ sli:
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/kubernetes/apiserver/latency"
+    id: "sloth-common/kubernetes/apiserver/latency"
     options:
       bucket: "1"
 ```
@@ -53,7 +53,7 @@ sli:
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/kubernetes/apiserver/latency"
+    id: "sloth-common/kubernetes/apiserver/latency"
     options:
       bucket: "0.2"
       filter: job="k8sapiserver",env="production",cluster="k8s-42"

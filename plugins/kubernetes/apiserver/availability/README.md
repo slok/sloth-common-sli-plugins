@@ -21,7 +21,7 @@ In other words, it counts as good events the <500 and !429 HTTP response status 
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/kubernetes/apiserver/availability"
+    id: "sloth-common/kubernetes/apiserver/availability"
 ```
 
 ### With custom filter
@@ -29,7 +29,7 @@ sli:
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/kubernetes/apiserver/availability"
+    id: "sloth-common/kubernetes/apiserver/availability"
     options:
       filter: job="k8sapiserver",env="production",cluster="k8s-42"
 ```

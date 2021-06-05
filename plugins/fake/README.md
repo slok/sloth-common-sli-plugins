@@ -19,7 +19,7 @@ Doesn't have any metric requirements.
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/fake"
+    id: "sloth-common/fake"
     options:
       burn_rate: "0.5"
 ```
@@ -29,7 +29,7 @@ sli:
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/fake"
+    id: "sloth-common/fake"
     options:
       burn_rate: "1"
 ```
@@ -39,7 +39,7 @@ sli:
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/fake"
+    id: "sloth-common/fake"
     options:
       burn_rate: "2"
 ```
@@ -49,7 +49,7 @@ sli:
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/fake"
+    id: "sloth-common/fake"
     options:
       burn_rate: "10"
 ```
@@ -59,7 +59,7 @@ sli:
 ```yaml
 sli:
   plugin:
-    id: "sloth_common/fake"
+    id: "sloth-common/fake"
     options:
       burn_rate: "1000"
 ```

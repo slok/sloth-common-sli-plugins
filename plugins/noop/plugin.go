@@ -6,7 +6,7 @@ import (
 
 const (
 	SLIPluginVersion = "prometheus/v1"
-	SLIPluginID      = "sloth_common/noop"
+	SLIPluginID      = "sloth-common/noop"
 )
 
 // SLIPlugin will return a query that always will be 0.
