@@ -25,13 +25,16 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
 ## Plugins
 
 - [Fake](./plugins/fake): Fakes burn rates with burn rate options.
+- Kubernetes
+  - Apiserver
+    - [Availability](./plugins/kubernetes/apiserver/availability): Availability SLI based on API HTTP requests.
 - [Noop](./plugins/noop): Example/placeholder that doesn't do anything.
 
 ## Contributing
 
 You can contribute with new plugins the same way the ones in [plugins](./plugins), the process would be this:
 
-- Create a directory group in [plugins](./plugins), only if the group would have more than one SLI plugin (e.g `app-x`, `protocol-y`, `library-z`...).
+- Create a directory (or/and subdirectories) group in [plugins](./plugins), only if the group would have more than one SLI plugin (e.g `app-x`, `protocol-y`, `library-z`...).
 - Create a directory for each plugin: (e.g `availability`, `latency`...).
 - Create a `plugin.go` file with the plugin and a `plugin_test.go` for the unit tests.
 - Create an sloth manifest in [`test/integration`](./test/integration) to test that sloth can load and use this plugin correctly.
@@ -39,6 +42,12 @@ You can contribute with new plugins the same way the ones in [plugins](./plugins
   - Introduction.
   - Options.
   - Usage examples.
+
+You can execute these to test it while developing:
+
+- `make check`
+- `make test`
+- `make integration-test`
 
 [sloth]: https://github.com/slok/sloth
 [sli-plugins]: https://github.com/slok/sloth#sli-plugins
