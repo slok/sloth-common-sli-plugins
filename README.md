@@ -29,7 +29,9 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
 
 ## Contributing
 
-You can contribute with new plugins the same way the ones in [plugins](./plugins), the process would be this:
+You can contribute with new plugins the same way the ones in [plugins](./plugins). [Here][plugin-pr-eg] You can see a Pull request example of adding contributing with a new plugin.
+
+The process would be this:
 
 - Create a directory group in [plugins](./plugins), only if the group would have more than one SLI plugin (e.g `app-x`, `protocol-y`, `library-z`...).
 - Create a directory for each plugin: (e.g `availability`, `latency`...).
@@ -42,3 +44,4 @@ You can contribute with new plugins the same way the ones in [plugins](./plugins
 
 [sloth]: https://github.com/slok/sloth
 [sli-plugins]: https://github.com/slok/sloth#sli-plugins
+[plugin-pr-eg]: https://github.com/slok/sloth-common-sli-plugins/pull/4
