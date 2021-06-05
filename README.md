@@ -24,7 +24,8 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
 
 ## Plugins
 
-- [Noop](./plugins/noop): A plugin example/placeholder that doesn't do anything.
+- [Fake](./plugins/fake): Fakes burn rates with burn rate options.
+- [Noop](./plugins/noop): Example/placeholder that doesn't do anything.
 
 ## Contributing
 
