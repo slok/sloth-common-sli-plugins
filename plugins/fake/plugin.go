@@ -8,7 +8,7 @@ import (
 
 const (
 	SLIPluginVersion = "prometheus/v1"
-	SLIPluginID      = "sloth_common/fake"
+	SLIPluginID      = "sloth-common/fake"
 )
 
 // SLIPlugin will return a query that will fake a burning error budget at the desired speed using

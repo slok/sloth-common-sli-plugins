@@ -16,5 +16,5 @@ Doesn't have any metric requirements.
 #...
 sli:
   plugin:
-  id: "sloth_common/noop"
+  id: "sloth-common/noop"
 ```
