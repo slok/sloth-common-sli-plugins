@@ -15,7 +15,7 @@ const (
 	SLIPluginID      = "sloth-common/kubernetes/apiserver/latency"
 )
 
-var queryTpl = template.Must(template.New("").Parse(`
+var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
 (
   sum(rate(apiserver_request_duration_seconds_count{ {{.filter}}verb!="WATCH" }[{{"{{.window}}"}}]))
   -

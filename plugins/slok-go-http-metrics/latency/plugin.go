@@ -24,7 +24,7 @@ var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
 `))
 
 // SLIPlugin will return a query that will return the latency error based on https://github.com/slok/go-http-metrics
-// status response buckets.
+// response request latency buckets.
 // Counts as an error event the requests that are not part of the required latency bucket.
 // Accepts "exclude_errors" bool option so we don't count the errors as valid events.
 func SLIPlugin(ctx context.Context, meta, labels, options map[string]string) (string, error) {
