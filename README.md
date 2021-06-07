@@ -25,6 +25,10 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
 ## Plugins
 
 - [Fake](./plugins/fake): Fakes burn rates with burn rate options.
+- HTTP:
+  - [slok/go-http-metrics]
+    - [Availability](./plugins/slok-go-http-metrics/availability): Availability SLI based on [slok/go-http-metrics] HTTP requests.
+    - [Latency](./plugins/slok-go-http-metrics/latency): Latency SLI based on [slok/go-http-metrics] HTTP requests.
 - Kubernetes
   - Apiserver
     - [Availability](./plugins/kubernetes/apiserver/availability): Availability SLI based on API HTTP requests.
@@ -53,3 +57,4 @@ You can execute these to test it while developing:
 
 [sloth]: https://github.com/slok/sloth
 [sli-plugins]: https://github.com/slok/sloth#sli-plugins
+[slok/go-http-metrics]: https://github.com/slok/go-http-metrics
