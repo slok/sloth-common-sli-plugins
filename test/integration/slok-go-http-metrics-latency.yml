@@ -1,0 +1,31 @@
+version: "prometheus/v1"
+service: "slok_go_http_metrics_latency"
+slos:
+  - name: "test-include-errors"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/slok-go-http-metrics/latency"
+        options:
+          filter: exported_service="alertmanager-api",service="alertgram"
+          bucket: "0.25"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
+
+  - name: "test-exclude-errors"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/slok-go-http-metrics/latency"
+        options:
+          filter: exported_service="alertmanager-api",service="alertgram"
+          bucket: "0.25"
+          exclude_errors: "true"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true

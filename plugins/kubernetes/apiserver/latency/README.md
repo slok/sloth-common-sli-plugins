@@ -2,7 +2,7 @@
 
 Latency plugin for the Kubernetes apiserver.
 
-Uses the API HTTP response histogram to measure the events as good or bad. It counts an error events that don't fall in the provided bucket.
+Uses the API HTTP response histogram to measure the events as good or bad. It counts as error events that don't fall in the provided bucket.
 
 For example if the bucket is `0.2`, We will measure as an error, the requests that fall in the buckets greater than `0.2`, in other words, that took longer than `200ms` .
 
