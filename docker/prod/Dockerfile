@@ -11,4 +11,4 @@ COPY ./plugins /plugins
 COPY --from=sloth /usr/local/bin/sloth /usr/local/bin/sloth
 
 
-ENTRYPOINT ["/usr/local/bin/sloth", "generate", "--sli-plugins-path=/plugins"]
+ENTRYPOINT ["/usr/local/bin/sloth"]
