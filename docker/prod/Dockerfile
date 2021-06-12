@@ -1,4 +1,4 @@
-FROM slok/sloth:268ba4039e2f64553c01da89c2bc608bb4c634a9 as sloth
+FROM slok/sloth:v0.3.0 as sloth
 
 FROM alpine:latest
 
