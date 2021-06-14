@@ -29,12 +29,16 @@ jobs:
   integration-test:
     name: Integration test
     runs-on: ubuntu-latest
-    container: slok/sloth:latest
+    env:
+      SLOTH_VERSION: v0.3.1
     steps:
       - uses: actions/checkout@v2
-      - run: ./scripts/check/integration-test.sh
+      - name: Execute tests
+        run: |
+          curl -Lo sloth https://github.com/slok/sloth/releases/download/${SLOTH_VERSION}/sloth-linux-amd64 && chmod +x sloth && sudo mv sloth /usr/local/bin/
+          ./scripts/check/integration-test.sh
 
-  rolling-release-image:
+  rolling-release-images:
     # Only on main branch.
     if: startsWith(github.ref, 'refs/heads/main')
     env:
@@ -42,17 +46,15 @@ jobs:
       PROD_IMAGE_NAME: ${GITHUB_REPOSITORY}
       VERSION: ${GITHUB_SHA}
     needs: [lint, unit-test, integration-test]
-    name: Release image
+    name: Release images
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build image
-        run: make build-image
       - name: Docker login
         run: docker login ${DOCKER_HOST} -u ${DOCKER_USER} -p ${DOCKER_TOKEN}
         env:
           DOCKER_HOST: ""
           DOCKER_USER: slok
           DOCKER_TOKEN: ${{secrets.DOCKER_HUB_TOKEN}}
-      - name: Publish image
-        run: make publish-image
+      - name: Build and publish images
+        run: make build-publish-image-all

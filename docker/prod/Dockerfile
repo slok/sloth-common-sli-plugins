@@ -1,14 +1,7 @@
-FROM slok/sloth:v0.3.0 as sloth
+ARG ARCH
 
-FROM alpine:latest
-
-RUN apk --no-cache add \
-    ca-certificates \
-    bash \
-    git
+FROM slok/sloth:v0.3.1-${ARCH}
 
 COPY ./plugins /plugins
-COPY --from=sloth /usr/local/bin/sloth /usr/local/bin/sloth
-
 
 ENTRYPOINT ["/usr/local/bin/sloth"]
