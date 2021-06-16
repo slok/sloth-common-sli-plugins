@@ -1,0 +1,29 @@
+version: "prometheus/v1"
+service: "kubernetes_kooper_availability_plugin_integration_test"
+slos:
+  - name: "test-no-filter"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/kubernetes/kooper/availability"
+        options:
+          controller: "sloth"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
+
+  - name: "test-filter"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/kubernetes/kooper/availability"
+        options:
+          controller: "sloth"
+          filter: job="k8sapiserver",env="production",cluster="k8s-42"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true

@@ -30,6 +30,10 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
     - [Availability](./plugins/slok-go-http-metrics/availability): Availability SLI based on [slok/go-http-metrics] HTTP requests.
     - [Latency](./plugins/slok-go-http-metrics/latency): Latency SLI based on [slok/go-http-metrics] HTTP requests.
 - Kubernetes
+  - [Kooper]
+    - [Availability](./plugins/kubernetes/kooper/availability): Availability event handling.
+    - [Latency](./plugins/kubernetes/kooper/latency): Latency event handling.
+    - [Queue congestion](./plugins/kubernetes/kooper/queuecongestion): Event queue congestion.
   - Apiserver
     - [Availability](./plugins/kubernetes/apiserver/availability): Availability SLI based on API HTTP requests.
     - [Latency](./plugins/kubernetes/apiserver/latency): Latency SLI based on API HTTP requests.
@@ -58,3 +62,4 @@ You can execute these to test it while developing:
 [sloth]: https://github.com/slok/sloth
 [sli-plugins]: https://github.com/slok/sloth#sli-plugins
 [slok/go-http-metrics]: https://github.com/slok/go-http-metrics
+[kooper]: https://github.com/spotahome/kooper
