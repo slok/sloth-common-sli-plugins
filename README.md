@@ -30,14 +30,17 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
     - [Availability](./plugins/slok-go-http-metrics/availability): Availability SLI based on [slok/go-http-metrics] HTTP requests.
     - [Latency](./plugins/slok-go-http-metrics/latency): Latency SLI based on [slok/go-http-metrics] HTTP requests.
 - Kubernetes
+  - Apiserver
+    - [Availability](./plugins/kubernetes/apiserver/availability): Availability SLI based on API HTTP requests.
+    - [Latency](./plugins/kubernetes/apiserver/latency): Latency SLI based on API HTTP requests.
   - [Kooper]
     - [Availability](./plugins/kubernetes/kooper/availability): Availability event handling.
     - [Latency](./plugins/kubernetes/kooper/latency): Latency event handling.
     - [Queue congestion](./plugins/kubernetes/kooper/queuecongestion): Event queue congestion.
-  - Apiserver
-    - [Availability](./plugins/kubernetes/apiserver/availability): Availability SLI based on API HTTP requests.
-    - [Latency](./plugins/kubernetes/apiserver/latency): Latency SLI based on API HTTP requests.
 - [Noop](./plugins/noop): Example/placeholder that doesn't do anything.
+- Prometheus
+  - Targets
+    - [Availability](./plugins/prometheus/targets/availability): Availability of Prometheus registered targets.
 
 ## Contributing
 
