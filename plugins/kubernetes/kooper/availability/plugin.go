@@ -19,7 +19,7 @@ sum(rate(kooper_controller_processed_event_duration_seconds_count{ {{ .filter }}
 (
   sum(rate(kooper_controller_processed_event_duration_seconds_count{ {{ .filter }}controller="{{ .controller }}" }[{{"{{ .window }}"}}]))
   -
-  sum(rate(kooper_controller_queued_events_total{ {{ .filter }}controller="{{ .controller }}",requeue="true" }[{{"{{ .window }}"}}]))
+  (sum(rate(kooper_controller_queued_events_total{ {{ .filter }}controller="{{ .controller }}",requeue="true" }[{{"{{ .window }}"}}])) OR on() vector(0))
 )
 `))
 

@@ -30,7 +30,7 @@ sum(rate(kooper_controller_processed_event_duration_seconds_count{ controller="s
 (
   sum(rate(kooper_controller_processed_event_duration_seconds_count{ controller="sloth" }[{{ .window }}]))
   -
-  sum(rate(kooper_controller_queued_events_total{ controller="sloth",requeue="true" }[{{ .window }}]))
+  (sum(rate(kooper_controller_queued_events_total{ controller="sloth",requeue="true" }[{{ .window }}])) OR on() vector(0))
 )
 `,
 		},
@@ -43,7 +43,7 @@ sum(rate(kooper_controller_processed_event_duration_seconds_count{ k1="v1",k2="v
 (
   sum(rate(kooper_controller_processed_event_duration_seconds_count{ k1="v1",k2="v2",controller="sloth" }[{{ .window }}]))
   -
-  sum(rate(kooper_controller_queued_events_total{ k1="v1",k2="v2",controller="sloth",requeue="true" }[{{ .window }}]))
+  (sum(rate(kooper_controller_queued_events_total{ k1="v1",k2="v2",controller="sloth",requeue="true" }[{{ .window }}])) OR on() vector(0))
 )
 `,
 		},
