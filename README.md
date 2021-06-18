@@ -41,6 +41,8 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
 - Prometheus
   - Targets
     - [Availability](./plugins/prometheus/targets/availability): Availability of Prometheus registered targets.
+  - Rules
+    - [Eval availability](./plugins/prometheus/rules/evalavailability): Availability of Prometheus rules evaluation.
 
 ## Contributing
 
