@@ -30,7 +30,7 @@ jobs:
     name: Integration test
     runs-on: ubuntu-latest
     env:
-      SLOTH_VERSION: v0.3.1
+      SLOTH_VERSION: v0.4.0
     steps:
       - uses: actions/checkout@v2
       - name: Execute tests
