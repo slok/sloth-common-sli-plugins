@@ -16,7 +16,10 @@ jobs:
       - uses: actions/checkout@v2
       # Required because issue_comment events are globals.
       # Check: https://github.com/actions/checkout/issues/331
-      - run: hub pr checkout ${{ github.event.issue.number }}
+      - name: Checkout Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: hub pr checkout ${{ github.event.issue.number }}
       - name: Docker login
         run: docker login ${DOCKER_HOST} -u ${DOCKER_USER} -p ${DOCKER_TOKEN}
         env:
