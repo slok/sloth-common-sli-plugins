@@ -26,3 +26,17 @@ slos:
         disable: true
       ticket_alert:
         disable: true
+
+  - name: "test-jitter"
+    objective: 99
+    sli:
+      plugin:
+        id: "sloth-common/fake"
+        options:
+          burn_rate: "1000"
+          jitter_percent: "10"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true

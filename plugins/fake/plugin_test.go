@@ -64,6 +64,18 @@ func TestSLIPlugin(t *testing.T) {
 			options:  map[string]string{"burn_rate": "0.5"},
 			expQuery: `max_over_time(vector(0.010000)[{{.window}}:])`,
 		},
+
+		"Having objective, burn rate and jitter, should return a correct query (speed 1, +-10%).": {
+			meta:     map[string]string{"objective": "99"},
+			options:  map[string]string{"burn_rate": "1", "jitter_percent": "10"},
+			expQuery: `(max_over_time(vector(0.010000)[{{.window}}:])) - ((0.010000 * (10.000000 - ((time() * minute() * hour() * day_of_week() * month()) % 20.000000))) / 100)`,
+		},
+
+		"Having objective, burn rate and jitter, should return a correct query (speed ~2 +-50%).": {
+			meta:     map[string]string{"objective": "99.9"},
+			options:  map[string]string{"burn_rate": "2", "jitter_percent": "50"},
+			expQuery: `(max_over_time(vector(0.002000)[{{.window}}:])) - ((0.002000 * (50.000000 - ((time() * minute() * hour() * day_of_week() * month()) % 100.000000))) / 100)`,
+		},
 	}
 
 	for name, test := range tests {
