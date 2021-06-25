@@ -7,6 +7,7 @@ You can get more information on the [SRE workbook `Alert on burn rate`][examples
 ## Options
 
 - `burn_rate`: (**Required**) A number that tells the burn rate factor (e.g: `1`, `2`, `10`...).
+- `jitter_percent`: (**Optional**) A percent number that will add/remove jitter on the burned rate.
 
 ## Metric requirements
 
@@ -62,6 +63,17 @@ sli:
     id: "sloth-common/fake"
     options:
       burn_rate: "1000"
+```
+
+### 1x speed `30d` window, consumed in `30d` using jitter
+
+```yaml
+sli:
+  plugin:
+    id: "sloth-common/fake"
+    options:
+      burn_rate: "1"
+      jitter_percent: "10"
 ```
 
 [examples-sre-book]: https://sre.google/workbook/alerting-on-slos/#burn_rates_and_time_to_complete_budget_ex
