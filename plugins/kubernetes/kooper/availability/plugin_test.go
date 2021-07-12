@@ -25,26 +25,30 @@ func TestSLIPlugin(t *testing.T) {
 		"Having no filter option should return the correct query.": {
 			options: map[string]string{"controller": "sloth"},
 			expQuery: `
-sum(rate(kooper_controller_processed_event_duration_seconds_count{ controller="sloth",success="false" }[{{ .window }}]))
-/
 (
-  sum(rate(kooper_controller_processed_event_duration_seconds_count{ controller="sloth" }[{{ .window }}]))
-  -
-  (sum(rate(kooper_controller_queued_events_total{ controller="sloth",requeue="true" }[{{ .window }}])) OR on() vector(0))
-)
+  sum(rate(kooper_controller_processed_event_duration_seconds_count{ controller="sloth",success="false" }[{{ .window }}]))
+  /
+  ((
+    sum(rate(kooper_controller_processed_event_duration_seconds_count{ controller="sloth" }[{{ .window }}]))
+    -
+    (sum(rate(kooper_controller_queued_events_total{ controller="sloth",requeue="true" }[{{ .window }}])) OR on() vector(0))
+  ) > 0)
+) OR on() vector(0)
 `,
 		},
 
 		"Having filter option should return the correct query.": {
 			options: map[string]string{"controller": "sloth", "filter": `k1="v1",k2="v2"`},
 			expQuery: `
-sum(rate(kooper_controller_processed_event_duration_seconds_count{ k1="v1",k2="v2",controller="sloth",success="false" }[{{ .window }}]))
-/
 (
-  sum(rate(kooper_controller_processed_event_duration_seconds_count{ k1="v1",k2="v2",controller="sloth" }[{{ .window }}]))
-  -
-  (sum(rate(kooper_controller_queued_events_total{ k1="v1",k2="v2",controller="sloth",requeue="true" }[{{ .window }}])) OR on() vector(0))
-)
+  sum(rate(kooper_controller_processed_event_duration_seconds_count{ k1="v1",k2="v2",controller="sloth",success="false" }[{{ .window }}]))
+  /
+  ((
+    sum(rate(kooper_controller_processed_event_duration_seconds_count{ k1="v1",k2="v2",controller="sloth" }[{{ .window }}]))
+    -
+    (sum(rate(kooper_controller_queued_events_total{ k1="v1",k2="v2",controller="sloth",requeue="true" }[{{ .window }}])) OR on() vector(0))
+  ) > 0)
+) OR on() vector(0)
 `,
 		},
 	}
