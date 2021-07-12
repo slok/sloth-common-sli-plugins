@@ -14,12 +14,14 @@ const (
 	SLIPluginID      = "sloth-common/kubernetes/kooper/queue-congestion"
 )
 
+// We use a combination of `>0` on the division denominator (so we don't divide by 0 to avoid getting `NaN`)
+// and then `OR on vector(1)` when the `>0` took effect to return a `0` error ratio.
 var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
-1 - (
+1 - ((
   sum(rate(kooper_controller_event_in_queue_duration_seconds_bucket{ {{ .filter }}controller="{{ .controller }}",le="{{ .bucket }}" }[{{"{{ .window }}"}}]))
   /
-  sum(rate(kooper_controller_event_in_queue_duration_seconds_count{ {{ .filter }}controller="{{ .controller }}" }[{{"{{ .window }}"}}]))
-)
+  (sum(rate(kooper_controller_event_in_queue_duration_seconds_count{ {{ .filter }}controller="{{ .controller }}" }[{{"{{ .window }}"}}])) > 0)
+) OR on() vector(1))
 `))
 
 // SLIPlugin will return a query that will return the congestion on the event queue by using the kooper's

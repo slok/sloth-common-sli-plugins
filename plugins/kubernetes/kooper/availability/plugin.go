@@ -13,14 +13,18 @@ const (
 	SLIPluginID      = "sloth-common/kubernetes/kooper/availability"
 )
 
+// We use a combination of "> 0" on the division denominator (so we don't divide by 0 to avoid getting "NaN")
+// and then "OR on vector(0)" when the ">0" took effect to return a "0" error ratio.
 var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
-sum(rate(kooper_controller_processed_event_duration_seconds_count{ {{ .filter }}controller="{{ .controller }}",success="false" }[{{"{{ .window }}"}}]))
-/
 (
-  sum(rate(kooper_controller_processed_event_duration_seconds_count{ {{ .filter }}controller="{{ .controller }}" }[{{"{{ .window }}"}}]))
-  -
-  (sum(rate(kooper_controller_queued_events_total{ {{ .filter }}controller="{{ .controller }}",requeue="true" }[{{"{{ .window }}"}}])) OR on() vector(0))
-)
+  sum(rate(kooper_controller_processed_event_duration_seconds_count{ {{ .filter }}controller="{{ .controller }}",success="false" }[{{"{{ .window }}"}}]))
+  /
+  ((
+    sum(rate(kooper_controller_processed_event_duration_seconds_count{ {{ .filter }}controller="{{ .controller }}" }[{{"{{ .window }}"}}]))
+    -
+    (sum(rate(kooper_controller_queued_events_total{ {{ .filter }}controller="{{ .controller }}",requeue="true" }[{{"{{ .window }}"}}])) OR on() vector(0))
+  ) > 0)
+) OR on() vector(0)
 `))
 
 // SLIPlugin will return a query that will return the availability by using the kooper queued and handled metrics.

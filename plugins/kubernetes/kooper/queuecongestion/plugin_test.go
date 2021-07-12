@@ -30,22 +30,22 @@ func TestSLIPlugin(t *testing.T) {
 		"Having no filter should return the correct query.": {
 			options: map[string]string{"bucket": "0.25", "controller": "sloth"},
 			expQuery: `
-1 - (
+1 - ((
   sum(rate(kooper_controller_event_in_queue_duration_seconds_bucket{ controller="sloth",le="0.25" }[{{ .window }}]))
   /
-  sum(rate(kooper_controller_event_in_queue_duration_seconds_count{ controller="sloth" }[{{ .window }}]))
-)
+  (sum(rate(kooper_controller_event_in_queue_duration_seconds_count{ controller="sloth" }[{{ .window }}])) > 0)
+) OR on() vector(1))
 `,
 		},
 
 		"Having filter should return the correct query.": {
 			options: map[string]string{"bucket": "0.25", "controller": "sloth", "filter": `k1="v1",k2="v2"`},
 			expQuery: `
-1 - (
+1 - ((
   sum(rate(kooper_controller_event_in_queue_duration_seconds_bucket{ k1="v1",k2="v2",controller="sloth",le="0.25" }[{{ .window }}]))
   /
-  sum(rate(kooper_controller_event_in_queue_duration_seconds_count{ k1="v1",k2="v2",controller="sloth" }[{{ .window }}]))
-)
+  (sum(rate(kooper_controller_event_in_queue_duration_seconds_count{ k1="v1",k2="v2",controller="sloth" }[{{ .window }}])) > 0)
+) OR on() vector(1))
 `,
 		},
 	}
