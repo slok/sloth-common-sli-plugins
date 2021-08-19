@@ -6,7 +6,7 @@
 
 ## Introduction
 
-A collection of common [Sloth] [SLI plugins][sli-plugins] ready to be used on Sloth manifests, or used as examples to create your own.
+A collection of common [Sloth][sli plugins][sli-plugins] ready to be used on Sloth manifests, or used as examples to create your own.
 
 ## Getting started
 
@@ -24,6 +24,8 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
 
 ## Plugins
 
+- [CoreDNS]
+  - [Availability](./plugins/coredns/availability): Availability for CoreDNS responses.
 - [Fake](./plugins/fake): Fakes burn rates with burn rate options.
 - HTTP:
   - [slok/go-http-metrics]
@@ -68,3 +70,4 @@ You can execute these to test it while developing:
 [sli-plugins]: https://github.com/slok/sloth#sli-plugins
 [slok/go-http-metrics]: https://github.com/slok/go-http-metrics
 [kooper]: https://github.com/spotahome/kooper
+[coredns]: https://coredns.io
