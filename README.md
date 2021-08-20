@@ -25,30 +25,31 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
 ## Plugins
 
 - [CoreDNS]
-  - [Availability](./plugins/coredns/availability): Availability for CoreDNS responses.
-  - [Latency](./plugins/coredns/latency): Latency for CoreDNS responses.
-- [Fake](./plugins/fake): Fakes burn rates with burn rate options.
+  - [🔌 Availability](./plugins/coredns/availability): Availability for CoreDNS responses.
+  - [🔌 Latency](./plugins/coredns/latency): Latency for CoreDNS responses.
+- [🔌 Fake](./plugins/fake): Fakes burn rates with burn rate options.
 - HTTP:
   - [slok/go-http-metrics]
-    - [Availability](./plugins/slok-go-http-metrics/availability): Availability SLI based on [slok/go-http-metrics] HTTP requests.
-    - [Latency](./plugins/slok-go-http-metrics/latency): Latency SLI based on [slok/go-http-metrics] HTTP requests.
+    - [🔌 Availability](./plugins/slok-go-http-metrics/availability): Availability SLI based on [slok/go-http-metrics] HTTP requests.
+    - [🔌 Latency](./plugins/slok-go-http-metrics/latency): Latency SLI based on [slok/go-http-metrics] HTTP requests.
 - Kubernetes
   - Apiserver
-    - [Availability](./plugins/kubernetes/apiserver/availability): Availability SLI based on API HTTP requests.
-    - [Latency](./plugins/kubernetes/apiserver/latency): Latency SLI based on API HTTP requests.
+    - [🔌 Availability](./plugins/kubernetes/apiserver/availability): Availability SLI based on API HTTP requests.
+    - [🔌 Latency](./plugins/kubernetes/apiserver/latency): Latency SLI based on API HTTP requests.
   - [Kooper]
-    - [Availability](./plugins/kubernetes/kooper/availability): Availability event handling.
-    - [Latency](./plugins/kubernetes/kooper/latency): Latency event handling.
-    - [Queue congestion](./plugins/kubernetes/kooper/queuecongestion): Event queue congestion.
+    - [🔌 Availability](./plugins/kubernetes/kooper/availability): Availability event handling.
+    - [🔌 Latency](./plugins/kubernetes/kooper/latency): Latency event handling.
+    - [🔌 Queue congestion](./plugins/kubernetes/kooper/queuecongestion): Event queue congestion.
 - [Noop](./plugins/noop): Example/placeholder that doesn't do anything.
 - Prometheus
   - Targets
-    - [Availability](./plugins/prometheus/targets/availability): Availability of Prometheus registered targets.
+    - [🔌 Availability](./plugins/prometheus/targets/availability): Availability of Prometheus registered targets.
   - Rules
-    - [Eval availability](./plugins/prometheus/rules/evalavailability): Availability of Prometheus rules evaluation.
+    - [🔌 Eval availability](./plugins/prometheus/rules/evalavailability): Availability of Prometheus rules evaluation.
 - [Traefik]
   - v1
-    - [Availability](./plugins/traefik/v1/availability): Availability for Traefik V1 serving backends.
+    - [🔌 Availability](./plugins/traefik/v1/availability): Availability for Traefik V1 serving backends.
+    - [🔌 Latency](./plugins/traefik/v1/latency): Latency for Traefik V1 serving backends.
 
 ## Contributing
 

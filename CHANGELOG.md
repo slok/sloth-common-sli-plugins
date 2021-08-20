@@ -4,6 +4,7 @@
 
 ### Added
 
+- Traefik v1 latency plugin.
 - Traefik v1 availability plugin.
 - CoreDNS availability plugin.
 - CoreDNS latency plugin.
