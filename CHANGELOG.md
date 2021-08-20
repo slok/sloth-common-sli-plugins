@@ -5,6 +5,7 @@
 ### Added
 
 - CoreDNS availability plugin.
+- CoreDNS latency plugin.
 - Prometheus rules availability plugin.
 - Prometheus targets availability plugin.
 - Kooper handling availability plugin.

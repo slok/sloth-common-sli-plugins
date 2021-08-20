@@ -7,7 +7,7 @@ This SLI will measure the latency of handling events/k8s objects on the Kooper c
 ## Options
 
 - `controller`: (**Required**) The controller being measured.
-- `bucket`: (**Required**) The max latency allowed hitogram bucket.
+- `bucket`: (**Required**) The max latency allowed histogram bucket.
 - `filter`: (**Optional**) Prometheus extra label filter.
 
 ## Metric requirements

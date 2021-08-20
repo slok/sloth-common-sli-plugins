@@ -75,8 +75,8 @@ func getFilter(options map[string]string) (string, error) {
 }
 
 func getBucket(options map[string]string) (string, error) {
-	bucket, ok := options["bucket"]
-	if !ok || (ok && bucket == "") {
+	bucket := options["bucket"]
+	if bucket == "" {
 		return "", fmt.Errorf(`"bucket" option is required`)
 	}
 
