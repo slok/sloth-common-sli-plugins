@@ -6,7 +6,7 @@
 
 ## Introduction
 
-A collection of common [Sloth][sli plugins][sli-plugins] ready to be used on Sloth manifests, or used as examples to create your own.
+A collection of common [Sloth][sloth] [sli plugins][sli-plugins] ready to be used on Sloth manifests, or used as examples to create your own.
 
 ## Getting started
 
@@ -46,6 +46,9 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
     - [Availability](./plugins/prometheus/targets/availability): Availability of Prometheus registered targets.
   - Rules
     - [Eval availability](./plugins/prometheus/rules/evalavailability): Availability of Prometheus rules evaluation.
+- [Traefik]
+  - v1
+    - [Availability](./plugins/traefik/v1/availability): Availability for Traefik V1 serving backends.
 
 ## Contributing
 
@@ -72,3 +75,4 @@ You can execute these to test it while developing:
 [slok/go-http-metrics]: https://github.com/slok/go-http-metrics
 [kooper]: https://github.com/spotahome/kooper
 [coredns]: https://coredns.io
+[traefik]: https://traefik.io
