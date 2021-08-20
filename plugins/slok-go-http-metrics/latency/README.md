@@ -8,7 +8,7 @@ For example if the bucket is `0.25`, We will measure as an error, the requests t
 
 ## Options
 
-- `bucket`: (**Required**) The max latency allowed hitogram bucket.
+- `bucket`: (**Required**) The max latency allowed histogram bucket.
 - `filter`: (**Required**) A prometheus filter string using concatenated labels (e.g: `exported_service="alertmanager-api",service="alertgram"`)
 - `exclude_errors`: (**Optional**) Boolean that will exclude errored requests from valid events when measuring latency requests.
 
