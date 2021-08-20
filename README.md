@@ -26,6 +26,7 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
 
 - [CoreDNS]
   - [Availability](./plugins/coredns/availability): Availability for CoreDNS responses.
+  - [Latency](./plugins/coredns/latency): Latency for CoreDNS responses.
 - [Fake](./plugins/fake): Fakes burn rates with burn rate options.
 - HTTP:
   - [slok/go-http-metrics]
