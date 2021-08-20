@@ -22,6 +22,11 @@ func TestSLIPlugin(t *testing.T) {
 			expErr:  true,
 		},
 
+		"Having an invalid bucket, it should fail.": {
+			options: map[string]string{"bucket": "something"},
+			expErr:  true,
+		},
+
 		"Having no filter should return the correct query.": {
 			options: map[string]string{"bucket": "0.25"},
 			expQuery: `
