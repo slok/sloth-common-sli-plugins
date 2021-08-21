@@ -5,8 +5,10 @@ import (
 )
 
 const (
+	// SLIPluginVersion is the version of the plugin spec.
 	SLIPluginVersion = "prometheus/v1"
-	SLIPluginID      = "sloth-common/noop"
+	// SLIPluginID is the registering ID of the plugin.
+	SLIPluginID = "sloth-common/noop"
 )
 
 // SLIPlugin will return a query that always will be 0.

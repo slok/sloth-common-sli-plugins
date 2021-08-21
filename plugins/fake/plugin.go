@@ -7,8 +7,10 @@ import (
 )
 
 const (
+	// SLIPluginVersion is the version of the plugin spec.
 	SLIPluginVersion = "prometheus/v1"
-	SLIPluginID      = "sloth-common/fake"
+	// SLIPluginID is the registering ID of the plugin.
+	SLIPluginID = "sloth-common/fake"
 )
 
 // SLIPlugin will return a query that will fake a burning error budget at the desired speed using

@@ -9,8 +9,10 @@ import (
 )
 
 const (
+	// SLIPluginVersion is the version of the plugin spec.
 	SLIPluginVersion = "prometheus/v1"
-	SLIPluginID      = "sloth-common/prometheus/targets/availability"
+	// SLIPluginID is the registering ID of the plugin.
+	SLIPluginID = "sloth-common/prometheus/targets/availability"
 )
 
 var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
