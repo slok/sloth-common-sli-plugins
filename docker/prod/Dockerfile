@@ -1,6 +1,6 @@
 ARG ARCH
 
-FROM slok/sloth:v0.5.0-${ARCH}
+FROM slok/sloth:v0.6.0-${ARCH}
 
 COPY ./plugins /plugins
 

@@ -9,8 +9,10 @@ import (
 )
 
 const (
+	// SLIPluginVersion is the version of the plugin spec.
 	SLIPluginVersion = "prometheus/v1"
-	SLIPluginID      = "sloth-common/kubernetes/kooper/availability"
+	// SLIPluginID is the registering ID of the plugin.
+	SLIPluginID = "sloth-common/kubernetes/kooper/availability"
 )
 
 // We use a combination of "> 0" on the division denominator (so we don't divide by 0 to avoid getting "NaN")

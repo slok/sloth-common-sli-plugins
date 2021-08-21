@@ -11,8 +11,10 @@ import (
 )
 
 const (
+	// SLIPluginVersion is the version of the plugin spec.
 	SLIPluginVersion = "prometheus/v1"
-	SLIPluginID      = "sloth-common/slok-go-http-metrics/latency"
+	// SLIPluginID is the registering ID of the plugin.
+	SLIPluginID = "sloth-common/slok-go-http-metrics/latency"
 )
 
 var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`

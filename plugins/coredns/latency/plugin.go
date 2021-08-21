@@ -10,8 +10,10 @@ import (
 )
 
 const (
+	// SLIPluginVersion is the version of the plugin spec.
 	SLIPluginVersion = "prometheus/v1"
-	SLIPluginID      = "sloth-common/coredns/latency"
+	// SLIPluginID is the registering ID of the plugin.
+	SLIPluginID = "sloth-common/coredns/latency"
 )
 
 // We use a combination of `>0` on the division denominator (so we don't divide by 0 to avoid getting `NaN`)
