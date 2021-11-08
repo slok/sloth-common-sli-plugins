@@ -10,8 +10,8 @@ UNIT_TEST_CMD := ./scripts/check/unit-test.sh
 INTEGRATION_TEST_CMD := ./scripts/check/integration-test.sh
 CHECK_CMD := ./scripts/check/check.sh
 
-DEV_IMAGE_NAME := slok/sloth-common-sli-plugins-dev
-PROD_IMAGE_NAME ?=  slok/sloth-common-sli-plugins
+DEV_IMAGE_NAME := local/sloth-common-sli-plugins-dev
+PROD_IMAGE_NAME ?=  ghcr.io/slok/sloth-common-sli-plugins
 
 DOCKER_RUN_CMD := docker run --env ostype=$(OSTYPE) -v ${PWD}:/src --rm ${DEV_IMAGE_NAME}
 BUILD_DEV_IMAGE_CMD := IMAGE=${DEV_IMAGE_NAME} DOCKER_FILE_PATH=./docker/dev/Dockerfile VERSION=latest ./scripts/build/docker/build-image-dev.sh
