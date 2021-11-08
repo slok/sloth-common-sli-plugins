@@ -8,7 +8,7 @@ jobs:
     # Only on pull request and `publish`.
     if: github.event.issue.pull_request && contains(github.event.comment.body, 'publish')
     env:
-      PROD_IMAGE_NAME: ${GITHUB_REPOSITORY}
+      PROD_IMAGE_NAME: ghcr.io/${GITHUB_REPOSITORY}
       VERSION: pr-${{ github.event.issue.number }}
     name: Release images
     runs-on: ubuntu-latest
@@ -21,10 +21,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: hub pr checkout ${{ github.event.issue.number }}
       - name: Docker login
-        run: docker login ${DOCKER_HOST} -u ${DOCKER_USER} -p ${DOCKER_TOKEN}
-        env:
-          DOCKER_HOST: ""
-          DOCKER_USER: slok
-          DOCKER_TOKEN: ${{secrets.DOCKER_HUB_TOKEN}}
+        run: docker login ghcr.io  -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
       - name: Build and publish images
         run: make build-publish-image-all
