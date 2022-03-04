@@ -1,6 +1,6 @@
 FROM slok/sloth:latest as sloth
 
-FROM golang:1.17.3
+FROM golang:1.18rc1
 
 ARG GOLANGCI_LINT_VERSION="1.42.0"
 ARG ostype=Linux
