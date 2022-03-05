@@ -16,7 +16,7 @@ const (
 )
 
 var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
-sum(count_over_time((up{ {{.filter}} } == 0)[{{"{{ .window }}"}}:]))
+sum(count_over_time((up{ {{.filter}} } == 0)[{{"{{ .window }}"}}:])) or vector(0)
 /
 sum(count_over_time((up{ {{.filter}} })[{{"{{ .window }}"}}:]))
 `))

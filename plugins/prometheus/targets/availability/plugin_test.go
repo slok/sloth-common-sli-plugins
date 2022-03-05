@@ -20,7 +20,7 @@ func TestSLIPlugin(t *testing.T) {
 		"Having no filter option should return the correct query.": {
 			options: map[string]string{},
 			expQuery: `
-sum(count_over_time((up{  } == 0)[{{ .window }}:]))
+sum(count_over_time((up{  } == 0)[{{ .window }}:])) or vector(0)
 /
 sum(count_over_time((up{  })[{{ .window }}:]))
 `,
@@ -29,7 +29,7 @@ sum(count_over_time((up{  })[{{ .window }}:]))
 		"Having filter option should return the correct query.": {
 			options: map[string]string{"filter": `k1="v1",k2="v2"`},
 			expQuery: `
-sum(count_over_time((up{ k1="v1",k2="v2" } == 0)[{{ .window }}:]))
+sum(count_over_time((up{ k1="v1",k2="v2" } == 0)[{{ .window }}:])) or vector(0)
 /
 sum(count_over_time((up{ k1="v1",k2="v2" })[{{ .window }}:]))
 `,
