@@ -1,13 +1,13 @@
 # Traefik V2 latency
 
-Latency plugin for [Traefik V2][traefik] backends.
+Latency plugin for [Traefik V2][traefik] services.
 
-Uses Traefik v2 backend metrics to get the latency on the serving backends.
+Uses Traefik v2 service metrics to get the latency on the serving services.
 
 ## Options
 
 - `bucket`: (**Required**) The max latency allowed histogram bucket.
-- `service_name_regex`: (**required**) Regex to match the traefik backends.
+- `service_name_regex`: (**required**) Regex to match the traefik service.
 - `filter`: (**Optional**) A prometheus filter string using concatenated labels
 - `exclude_errors`: (**Optional**) Boolean that will exclude errored requests from valid events when measuring latency requests.
 
