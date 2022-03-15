@@ -26,7 +26,7 @@ var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
 
 // SLIPlugin will return a query that will return the availability error based on traefik V1 service metrics.
 func SLIPlugin(ctx context.Context, meta, labels, options map[string]string) (string, error) {
-	service_name, err := getServiceName(options)
+	service, err := getServiceName(options)
 	if err != nil {
 		return "", fmt.Errorf("could not get service name: %w", err)
 	}
@@ -35,7 +35,7 @@ func SLIPlugin(ctx context.Context, meta, labels, options map[string]string) (st
 	var b bytes.Buffer
 	data := map[string]string{
 		"filter":      getFilter(options),
-		"serviceName": service_name,
+		"serviceName": service,
 	}
 	err = queryTpl.Execute(&b, data)
 	if err != nil {
@@ -56,17 +56,17 @@ func getFilter(options map[string]string) string {
 }
 
 func getServiceName(options map[string]string) (string, error) {
-	service_name := options["service_name_regex"]
-	service_name = strings.TrimSpace(service_name)
+	service := options["service_name_regex"]
+	service = strings.TrimSpace(service)
 
-	if service_name == "" {
+	if service == "" {
 		return "", fmt.Errorf("service name is required")
 	}
 
-	_, err := regexp.Compile(service_name)
+	_, err := regexp.Compile(service)
 	if err != nil {
 		return "", fmt.Errorf("invalid regex: %w", err)
 	}
 
-	return service_name, nil
+	return service, nil
 }
