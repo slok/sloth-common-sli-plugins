@@ -1,0 +1,29 @@
+version: "prometheus/v1"
+service: "traefik_v2_availability"
+slos:
+  - name: "test-default"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/traefik/v2/availability"
+        options:
+          service_name_regex: "^default-slok-sloth$"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
+
+  - name: "test-filter"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/traefik/v1/availability"
+        options:
+          service_name_regex: "^default-slok-sloth$"
+          filter: method="GET"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true

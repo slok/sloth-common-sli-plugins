@@ -1,0 +1,47 @@
+version: "prometheus/v1"
+service: "traefik_v2_latency"
+slos:
+  - name: "test-default"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/traefik/v2/latency"
+        options:
+          service_name_regex: "^default-slok-sloth$"
+          bucket: "0.3"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
+
+  - name: "test-filter"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/traefik/v2/latency"
+        options:
+          service_name_regex: "^default-slok-sloth$"
+          filter: method="GET"
+          bucket: "0.3"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
+
+  - name: "test-exclude-errors"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/traefik/v2/latency"
+        options:
+          service_name_regex: "^default-slok-sloth$"
+          filter: method="GET"
+          bucket: "0.3"
+          exclude_errors: "true"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
