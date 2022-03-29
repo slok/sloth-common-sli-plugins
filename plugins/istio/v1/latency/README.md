@@ -26,9 +26,9 @@ sli:
   plugin:
     id: "sloth-common/istio/v1/latency"
     options:
-      namespace: default
-      service: test
-      bucket: 300
+      namespace: "default"
+      service: "test"
+      bucket: "300"
 ```
 
 ### With filters
@@ -38,9 +38,9 @@ sli:
   plugin:
     id: "sloth-common/istio/v1/latency"
     options:
-      namespace: default
-      service: test
-      bucket: 300
+      namespace: "default"
+      service: "test"
+      bucket: "300"
       filter: request_protocol="http"
 ```
 
@@ -51,11 +51,11 @@ sli:
   plugin:
     id: "sloth-common/istio/v1/latency"
     options:
-      namespace: default
-      service: test
-      bucket: 300
+      namespace: "default"
+      service: "test"
+      bucket: "300"
       filter: request_protocol="http"
-      exclude_errors: "true"
+      exclude_errors: true
 ```
 
 [Istio]: https://istio.io/v1.10/docs/

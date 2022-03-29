@@ -1,0 +1,50 @@
+version: "prometheus/v1"
+service: "traefik_v1_latency"
+slos:
+  - name: "test-default"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/istio/v1/latency"
+        options:
+          namespace: "default"
+          service: "test"
+          bucket: "300"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
+
+  - name: "test-filter"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/istio/v1/latency"
+        options:
+          namespace: "default"
+          service: "test"
+          bucket: "300"
+          filter: request_protocol="http"
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true
+
+  - name: "test-exclude-errors"
+    objective: 99.9
+    sli:
+      plugin:
+        id: "sloth-common/istio/v1/latency"
+        options:
+          namespace: "default"
+          service: "test"
+          bucket: "300"
+          filter: request_protocol="http"
+          exclude_errors: true
+    alerting:
+      page_alert:
+        disable: true
+      ticket_alert:
+        disable: true

@@ -23,8 +23,8 @@ sli:
   plugin:
     id: "sloth-common/istio/v1/availability"
     options:
-      namespace: default
-      service: test
+      namespace: "default"
+      service: "test"
 ```
 
 ### With filters
@@ -34,8 +34,8 @@ sli:
   plugin:
     id: "sloth-common/istio/v1/availability"
     options:
-      namespace: default
-      service: test
+      namespace: "default"
+      service: "test"
       filter: request_protocol="http"
 ```
 

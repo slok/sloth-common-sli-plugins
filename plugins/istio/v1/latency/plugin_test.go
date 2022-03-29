@@ -1,4 +1,4 @@
-package availability_test
+package latency_test
 
 import (
 	"context"
@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	availability "github.com/slok/sloth-common-sli-plugins/plugins/traefik/v1/latency"
+	"github.com/slok/sloth-common-sli-plugins/plugins/istio/v1/latency"
 )
 
 func TestSLIPlugin(t *testing.T) {
@@ -56,9 +56,9 @@ func TestSLIPlugin(t *testing.T) {
 			options: map[string]string{"namespace": "default", "service": "test", "bucket": "500"},
 			expQuery: `
 1 - ((
-	sum(rate(istio_request_duration_milliseconds_bucket{ destination_service_name="test",destination_service_namespace="default",le="500" }[{{"{{.window}}"}}]))
-	/
-	(sum(rate(istio_request_duration_milliseconds_count{ destination_service_name="test",destination_service_namespace="default" }[{{"{{.window}}"}}])) > 0)
+  sum(rate(istio_request_duration_milliseconds_bucket{ destination_service_name="test",destination_service_namespace="default",le="500" }[{{.window}}]))
+  /
+  (sum(rate(istio_request_duration_milliseconds_count{ destination_service_name="test",destination_service_namespace="default" }[{{.window}}])) > 0)
 ) OR on() vector(1))
 `,
 		},
@@ -67,9 +67,9 @@ func TestSLIPlugin(t *testing.T) {
 			options: map[string]string{"namespace": "default", "service": "test", "bucket": "500", "exclude_errors": "true"},
 			expQuery: `
 1 - ((
-	sum(rate(istio_request_duration_milliseconds_bucket{ code!~"5..",destination_service_name="test",destination_service_namespace="default",le="500" }[{{"{{.window}}"}}]))
-	/
-	(sum(rate(istio_request_duration_milliseconds_count{ code!~"5..",destination_service_name="test",destination_service_namespace="default" }[{{"{{.window}}"}}])) > 0)
+  sum(rate(istio_request_duration_milliseconds_bucket{ code!~"5..",destination_service_name="test",destination_service_namespace="default",le="500" }[{{.window}}]))
+  /
+  (sum(rate(istio_request_duration_milliseconds_count{ code!~"5..",destination_service_name="test",destination_service_namespace="default" }[{{.window}}])) > 0)
 ) OR on() vector(1))
 `,
 		},
@@ -83,9 +83,9 @@ func TestSLIPlugin(t *testing.T) {
 			},
 			expQuery: `
 1 - ((
-	sum(rate(istio_request_duration_milliseconds_bucket{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default",le="500" }[{{"{{.window}}"}}]))
-	/
-	(sum(rate(istio_request_duration_milliseconds_count{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default" }[{{"{{.window}}"}}])) > 0)
+  sum(rate(istio_request_duration_milliseconds_bucket{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default",le="500" }[{{.window}}]))
+  /
+  (sum(rate(istio_request_duration_milliseconds_count{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default" }[{{.window}}])) > 0)
 ) OR on() vector(1))
 `,
 		},
@@ -100,9 +100,9 @@ func TestSLIPlugin(t *testing.T) {
 			},
 			expQuery: `
 1 - ((
-	sum(rate(istio_request_duration_milliseconds_bucket{ k1="v2",k2="v2",code!~"5..",destination_service_name="test",destination_service_namespace="default",le="500" }[{{"{{.window}}"}}]))
-	/
-	(sum(rate(istio_request_duration_milliseconds_count{ k1="v2",k2="v2",code!~"5..",destination_service_name="test",destination_service_namespace="default" }[{{"{{.window}}"}}])) > 0)
+  sum(rate(istio_request_duration_milliseconds_bucket{ k1="v2",k2="v2",code!~"5..",destination_service_name="test",destination_service_namespace="default",le="500" }[{{.window}}]))
+  /
+  (sum(rate(istio_request_duration_milliseconds_count{ k1="v2",k2="v2",code!~"5..",destination_service_name="test",destination_service_namespace="default" }[{{.window}}])) > 0)
 ) OR on() vector(1))
 `,
 		},
@@ -116,9 +116,9 @@ func TestSLIPlugin(t *testing.T) {
 			},
 			expQuery: `
 1 - ((
-	sum(rate(istio_request_duration_milliseconds_bucket{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default",le="500" }[{{"{{.window}}"}}]))
-	/
-	(sum(rate(istio_request_duration_milliseconds_count{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default" }[{{"{{.window}}"}}])) > 0)
+  sum(rate(istio_request_duration_milliseconds_bucket{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default",le="500" }[{{.window}}]))
+  /
+  (sum(rate(istio_request_duration_milliseconds_count{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default" }[{{.window}}])) > 0)
 ) OR on() vector(1))
 `,
 		},
@@ -132,9 +132,9 @@ func TestSLIPlugin(t *testing.T) {
 			},
 			expQuery: `
 1 - ((
-	sum(rate(istio_request_duration_milliseconds_bucket{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default",le="500" }[{{"{{.window}}"}}]))
-	/
-	(sum(rate(istio_request_duration_milliseconds_count{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default" }[{{"{{.window}}"}}])) > 0)
+  sum(rate(istio_request_duration_milliseconds_bucket{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default",le="500" }[{{.window}}]))
+  /
+  (sum(rate(istio_request_duration_milliseconds_count{ k1="v2",k2="v2",destination_service_name="test",destination_service_namespace="default" }[{{.window}}])) > 0)
 ) OR on() vector(1))
 `,
 		},
@@ -144,7 +144,7 @@ func TestSLIPlugin(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			assert := assert.New(t)
 
-			gotQuery, err := availability.SLIPlugin(context.TODO(), test.meta, test.labels, test.options)
+			gotQuery, err := latency.SLIPlugin(context.TODO(), test.meta, test.labels, test.options)
 
 			if test.expErr {
 				assert.Error(err)

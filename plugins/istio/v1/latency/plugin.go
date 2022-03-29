@@ -1,4 +1,4 @@
-package availability
+package latency
 
 import (
 	"bytes"
@@ -119,10 +119,10 @@ func getExcludeErrors(options map[string]string) (bool, error) {
 }
 
 func getRequiredStringValue(key string, options map[string]string) (string, error) {
-	value := options[key]
+	value, exists := options[key]
 	value = strings.TrimSpace(value)
 
-	if value == "" {
+	if !exists || value == "" {
 		return "", fmt.Errorf("%s is required", key)
 	}
 
