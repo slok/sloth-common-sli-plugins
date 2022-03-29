@@ -30,7 +30,7 @@ sli:
 ```yaml
 sli:
   plugin:
-    id: "sloth-common/coredns/availability"
+    id: "sloth-common/traefik/v1/availability"
     options:
       backend_regex: "^github.com/slok/sloth/?$"
       filter: method="GET"
