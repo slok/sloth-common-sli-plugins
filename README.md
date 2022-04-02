@@ -50,6 +50,9 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
   - v1
     - [🔌 Availability](./plugins/traefik/v1/availability): Availability for Traefik V1 serving backends.
     - [🔌 Latency](./plugins/traefik/v1/latency): Latency for Traefik V1 serving backends.
+  - v2
+    - [🔌 Availability](./plugins/traefik/v2/availability): Availability for Traefik V2 serving services.
+    - [🔌 Latency](./plugins/traefik/v2/latency): Latency for Traefik V2 serving services.
 - [Istio]
   - v1
     - [🔌 Availability](./plugins/istio/v1/availability): Availability plugin for Istio V1 services.
