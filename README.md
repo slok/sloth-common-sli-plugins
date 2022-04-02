@@ -53,6 +53,10 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
   - v2
     - [🔌 Availability](./plugins/traefik/v2/availability): Availability for Traefik V2 serving services.
     - [🔌 Latency](./plugins/traefik/v2/latency): Latency for Traefik V2 serving services.
+- [Istio]
+  - v1
+    - [🔌 Availability](./plugins/istio/v1/availability): Availability plugin for Istio V1 services.
+    - [🔌 Latency](./plugins/istio/v1/latency): Latency plugin for Istio V1 services.
 
 ## Contributing
 
@@ -80,3 +84,4 @@ You can execute these to test it while developing:
 [kooper]: https://github.com/spotahome/kooper
 [coredns]: https://coredns.io
 [traefik]: https://traefik.io
+[istio]: https://istio.io

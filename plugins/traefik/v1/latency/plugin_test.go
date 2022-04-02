@@ -1,4 +1,4 @@
-package availability_test
+package latency_test
 
 import (
 	"context"
@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	availability "github.com/slok/sloth-common-sli-plugins/plugins/traefik/v1/latency"
+	"github.com/slok/sloth-common-sli-plugins/plugins/traefik/v1/latency"
 )
 
 func TestSLIPlugin(t *testing.T) {
@@ -135,7 +135,7 @@ func TestSLIPlugin(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			assert := assert.New(t)
 
-			gotQuery, err := availability.SLIPlugin(context.TODO(), test.meta, test.labels, test.options)
+			gotQuery, err := latency.SLIPlugin(context.TODO(), test.meta, test.labels, test.options)
 
 			if test.expErr {
 				assert.Error(err)

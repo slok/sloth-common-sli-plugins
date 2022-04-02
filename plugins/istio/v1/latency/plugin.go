@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"regexp"
 	"strconv"
 	"strings"
 	"text/template"
@@ -14,18 +13,18 @@ const (
 	// SLIPluginVersion is the version of the plugin spec.
 	SLIPluginVersion = "prometheus/v1"
 	// SLIPluginID is the registering ID of the plugin.
-	SLIPluginID = "sloth-common/traefik/v1/latency"
+	SLIPluginID = "sloth-common/istio/v1/latency"
 )
 
 var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
 1 - ((
-  sum(rate(traefik_backend_request_duration_seconds_bucket{ {{.filter}}backend=~"{{.backendRegex}}",le="{{.bucket}}" }[{{"{{.window}}"}}]))
+  sum(rate(istio_request_duration_milliseconds_bucket{ {{.filter}}destination_service_name="{{.service}}",destination_service_namespace="{{.namespace}}",le="{{.bucket}}" }[{{"{{.window}}"}}]))
   /
-  (sum(rate(traefik_backend_request_duration_seconds_count{ {{.filter}}backend=~"{{.backendRegex}}" }[{{"{{.window}}"}}])) > 0)
+  (sum(rate(istio_request_duration_milliseconds_count{ {{.filter}}destination_service_name="{{.service}}",destination_service_namespace="{{.namespace}}" }[{{"{{.window}}"}}])) > 0)
 ) OR on() vector(1))
 `))
 
-// SLIPlugin will return a query that will return the latency based on traefik V1 backend metrics.
+// SLIPlugin will return a query that will return the latency based on istio V1 request metrics.
 // Counts as an error event the requests that are not part of the required latency bucket.
 // Accepts "exclude_errors" bool option so we don't count the errors as valid events.
 func SLIPlugin(ctx context.Context, meta, labels, options map[string]string) (string, error) {
@@ -34,9 +33,14 @@ func SLIPlugin(ctx context.Context, meta, labels, options map[string]string) (st
 		return "", fmt.Errorf(`could not get bucket: %w`, err)
 	}
 
-	backendRegex, err := getBackendRegex(options)
+	service, err := getRequiredStringValue("service", options)
 	if err != nil {
-		return "", fmt.Errorf("could not get backend regex: %w", err)
+		return "", fmt.Errorf("could not get service: %w", err)
+	}
+
+	namespace, err := getRequiredStringValue("namespace", options)
+	if err != nil {
+		return "", fmt.Errorf("could not get namespace: %w", err)
 	}
 
 	filter, err := getFilter(options)
@@ -47,9 +51,10 @@ func SLIPlugin(ctx context.Context, meta, labels, options map[string]string) (st
 	// Create query.
 	var b bytes.Buffer
 	data := map[string]string{
-		"filter":       filter,
-		"backendRegex": backendRegex,
-		"bucket":       bucket,
+		"filter":    filter,
+		"service":   service,
+		"namespace": namespace,
+		"bucket":    bucket,
 	}
 	err = queryTpl.Execute(&b, data)
 	if err != nil {
@@ -99,22 +104,6 @@ func getFilter(options map[string]string) (string, error) {
 	return "", fmt.Errorf("invalid case")
 }
 
-func getBackendRegex(options map[string]string) (string, error) {
-	backend := options["backend_regex"]
-	backend = strings.TrimSpace(backend)
-
-	if backend == "" {
-		return "", fmt.Errorf("backend is required")
-	}
-
-	_, err := regexp.Compile(backend)
-	if err != nil {
-		return "", fmt.Errorf("invalid regex: %w", err)
-	}
-
-	return backend, nil
-}
-
 func getExcludeErrors(options map[string]string) (bool, error) {
 	excludeErrorsS := options["exclude_errors"]
 	if excludeErrorsS == "" {
@@ -127,4 +116,15 @@ func getExcludeErrors(options map[string]string) (bool, error) {
 	}
 
 	return excludeErrors, nil
+}
+
+func getRequiredStringValue(key string, options map[string]string) (string, error) {
+	value, exists := options[key]
+	value = strings.TrimSpace(value)
+
+	if !exists || value == "" {
+		return "", fmt.Errorf("%s is required", key)
+	}
+
+	return value, nil
 }
