@@ -31,7 +31,7 @@ func TestSLIPlugin(t *testing.T) {
 (
   sum(request_total{ k1="v2",k2="v2",direction="inbound",le="10" }[{{.window}}])
   /
-  (sum(request_total{ k1="v2",k2="v2",direction="inbound"}[{{.window}}]) > 0)
+  sum(request_total{ k1="v2",k2="v2",direction="inbound"}[{{.window}}])
 ) OR on() vector(0)
 `,
 		},
@@ -42,7 +42,7 @@ func TestSLIPlugin(t *testing.T) {
 (
   sum(request_total{ k1="v2",k2="v2",direction="inbound",le="10" }[{{.window}}])
   /
-  (sum(request_total{ k1="v2",k2="v2",direction="inbound"}[{{.window}}]) > 0)
+  sum(request_total{ k1="v2",k2="v2",direction="inbound"}[{{.window}}])
 ) OR on() vector(0)
 `,
 		},
@@ -53,7 +53,7 @@ func TestSLIPlugin(t *testing.T) {
 (
   sum(request_total{ k1="v2",k2="v2",direction="inbound",le="10" }[{{.window}}])
   /
-  (sum(request_total{ k1="v2",k2="v2",direction="inbound"}[{{.window}}]) > 0)
+  sum(request_total{ k1="v2",k2="v2",direction="inbound"}[{{.window}}])
 ) OR on() vector(0)
 `,
 		},
@@ -64,7 +64,7 @@ func TestSLIPlugin(t *testing.T) {
 (
   sum(request_total{ k1="v2",k2="v2",direction="inbound",le="10" }[{{.window}}])
   /
-  (sum(request_total{ k1="v2",k2="v2",direction="inbound"}[{{.window}}]) > 0)
+  sum(request_total{ k1="v2",k2="v2",direction="inbound"}[{{.window}}])
 ) OR on() vector(0)
 `,
 		},

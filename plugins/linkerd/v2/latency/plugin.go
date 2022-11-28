@@ -21,7 +21,7 @@ var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
 (
   sum(request_total{ {{.filter}}direction="inbound",le="{{.bucket}}" }[{{"{{.window}}"}}])
   /
-  (sum(request_total{ {{.filter}}direction="inbound"}[{{"{{.window}}"}}]) > 0)
+  sum(request_total{ {{.filter}}direction="inbound"}[{{"{{.window}}"}}])
 ) OR on() vector(0)
 `))
 

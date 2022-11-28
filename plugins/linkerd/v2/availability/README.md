@@ -1,20 +1,27 @@
-# Noop
+# Linkerd V2 availability
 
-A plugin that always returns a queyr that will return 0. the aim of this plugin is to use as a placeholder and example to create other plugins.
+Availability plugin for [Linkerd V2](https://linkerd.io/) services.
+
+Uses Linkerd v2 service metrics to get the correct and invalid availability on the serving services.
 
 ## Options
 
-Doesn't have any options.
+- `filter`: (**Optional**) A prometheus filter string using concatenated labels
 
 ## Metric requirements
 
-Doesn't have any metric requirements.
+- `response_total`: From [linkerd].
 
 ## Usage examples
 
+### With filters
+
 ```yaml
-#...
 sli:
   plugin:
-  id: "sloth-common/noop"
+    id: "sloth-common/linkerd/v2/availability"
+    options:
+      filter: `deployment="test-deploy", namespace="test-ns"`
 ```
+
+[linkerd]: https://linkerd.io/2.12/overview/
