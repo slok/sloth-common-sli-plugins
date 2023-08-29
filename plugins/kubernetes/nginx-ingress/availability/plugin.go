@@ -20,6 +20,7 @@ var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
 sum(rate(nginx_ingress_controller_requests{ {{.filterError}}status=~"(5..|429)" }[{{"{{.window}}"}}]))
 /
 sum(rate(nginx_ingress_controller_requests{ {{.filterTotal}} }[{{"{{.window}}"}}]))
+or on() vector(0)
 `))
 
 // SLIPlugin will return a query that will return the availability error based on the ingress status response codes.
