@@ -1,6 +1,6 @@
 # Noop
 
-A plugin that always returns a queyr that will return 0. the aim of this plugin is to use as a placeholder and example to create other plugins.
+A plugin that always returns a query that will return 0. the aim of this plugin is to use as a placeholder and example to create other plugins.
 
 ## Options
 
