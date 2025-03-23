@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"regexp"
 	"strings"
 	"text/template"
 )
@@ -23,7 +22,7 @@ sum(rate(haproxy_frontend_http_responses_total{ {{.filterTotal}} }[{{"{{.window}
 `))
 
 // SLIPlugin will return a query that will return the availability error based on frontend responses
-// Counts as an error event the requests that have 5xx status code
+// Counts as an error event the requests that have 5xx status code.
 func SLIPlugin(ctx context.Context, meta, labels, options map[string]string) (string, error) {
 	filter, err := getFilter(options)
 	if err != nil {
@@ -47,7 +46,7 @@ func SLIPlugin(ctx context.Context, meta, labels, options map[string]string) (st
 	return b.String(), nil
 }
 
-func getFilter(options map[string]string) (string, error)  {
+func getFilter(options map[string]string) (string, error) {
 	filter, ok := options["filter"]
 	if !ok || (ok && filter == "") {
 		return "", nil
