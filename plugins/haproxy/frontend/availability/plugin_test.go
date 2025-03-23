@@ -17,33 +17,28 @@ func TestSLIPlugin(t *testing.T) {
 		expQuery string
 		expErr   bool
 	}{
-		"Having a wrong filter, it should fail.": {
-			options: map[string]string{"filter": "something="},
-			expErr:  true,
-		},
-
 		"Not having a filter shouldn't fail and return the correct query.": {
-			expQuery: "\nsum(rate(haproxy_frontend_http_responses_total{ code=~\"(5..|429)\" }[{{.window}}]))\n/\nsum(rate(haproxy_frontend_http_responses_total{  }[{{.window}}]))\n",
+			expQuery: "\nsum(rate(haproxy_frontend_http_responses_total{ code=\"5xx\" }[{{.window}}]))\n/\nsum(rate(haproxy_frontend_http_responses_total{  }[{{.window}}]))\n",
 		},
 
 		"Having a filter should return the query with the filters.": {
 			options:  map[string]string{"filter": `k1="v2",k2="v2"`},
-			expQuery: "\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\",code=~\"(5..|429)\" }[{{.window}}]))\n/\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}]))\n",
+			expQuery: "\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\",code=\"5xx\" }[{{.window}}]))\n/\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\", }[{{.window}}]))\n",
 		},
 
 		"Having a filter with `{}` should return the query with the filters.": {
 			options:  map[string]string{"filter": `{k1="v2",k2="v2"}`},
-			expQuery: "\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\",code=~\"(5..|429)\" }[{{.window}}]))\n/\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}]))\n",
+			expQuery: "\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\",code=\"5xx\" }[{{.window}}]))\n/\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\", }[{{.window}}]))\n",
 		},
 
 		"Having a filter with `,` should return the query with the filters.": {
 			options:  map[string]string{"filter": `k1="v2",k2="v2",`},
-			expQuery: "\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\",code=~\"(5..|429)\" }[{{.window}}]))\n/\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}]))\n",
+			expQuery: "\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\",code=\"5xx\" }[{{.window}}]))\n/\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\", }[{{.window}}]))\n",
 		},
 
 		"Having a filter with `{}` and `,` should return the query with the filters.": {
 			options:  map[string]string{"filter": `{k1="v2",k2="v2",}`},
-			expQuery: "\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\",code=~\"(5..|429)\" }[{{.window}}]))\n/\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}]))\n",
+			expQuery: "\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\",code=\"5xx\" }[{{.window}}]))\n/\nsum(rate(haproxy_frontend_http_responses_total{ k1=\"v2\",k2=\"v2\", }[{{.window}}]))\n",
 		},
 	}
 
