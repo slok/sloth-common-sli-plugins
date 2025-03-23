@@ -1,8 +1,8 @@
 FROM slok/sloth:latest as sloth
 
-FROM golang:1.19.2
+FROM golang:1.24
 
-ARG GOLANGCI_LINT_VERSION="1.42.0"
+ARG GOLANGCI_LINT_VERSION="1.64.8"
 ARG ostype=Linux
 
 RUN apt-get update && apt-get install -y \

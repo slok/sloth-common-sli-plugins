@@ -6,21 +6,21 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    container: golangci/golangci-lint:v1.42.0-alpine
+    container: golangci/golangci-lint:v1.64.8-alpine
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: ./scripts/check/lint.sh
 
   unit-test:
     name: Unit test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
-          go-version: 1.17
+          go-version-file: go.mod
       - run: ./scripts/check/unit-test.sh
-      - uses: codecov/codecov-action@v3.1.1
+      - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_UPLOAD_TOKEN }}
           file: ./.test_coverage.txt
@@ -30,9 +30,9 @@ jobs:
     name: Integration test
     runs-on: ubuntu-latest
     env:
-      SLOTH_VERSION: v0.6.0
+      SLOTH_VERSION: v0.11.0
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Execute tests
         run: |
           curl -Lo sloth https://github.com/slok/sloth/releases/download/${SLOTH_VERSION}/sloth-linux-amd64 && chmod +x sloth && sudo mv sloth /usr/local/bin/
@@ -49,7 +49,7 @@ jobs:
     name: Release images
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Docker login
         run: docker login ghcr.io  -u ${{ github.actor }} -p ${{secrets.GITHUB_TOKEN}}
       - name: Build and publish images
