@@ -28,6 +28,9 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
   - [🔌 Availability](./plugins/coredns/availability): Availability for CoreDNS responses.
   - [🔌 Latency](./plugins/coredns/latency): Latency for CoreDNS responses.
 - [🔌 Fake](./plugins/fake): Fakes burn rates with burn rate options.
+- HAProxy:
+  - frontent
+    - [🔌 Availability](./plugins/haproxy/frontend/availability): Availability SLI based on HAProxy frontend.
 - HTTP:
   - [slok/go-http-metrics]
     - [🔌 Availability](./plugins/slok-go-http-metrics/availability): Availability SLI based on [slok/go-http-metrics] HTTP requests.
@@ -40,6 +43,8 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
     - [🔌 Availability](./plugins/kubernetes/kooper/availability): Availability event handling.
     - [🔌 Latency](./plugins/kubernetes/kooper/latency): Latency event handling.
     - [🔌 Queue congestion](./plugins/kubernetes/kooper/queuecongestion): Event queue congestion.
+  - ingress-nginx
+    - [🔌 Availability](./plugins/kubernetes/nginx-ingress/availability): Availability SLI based on ingress Nginx.
 - [Noop](./plugins/noop): Example/placeholder that doesn't do anything.
 - Prometheus
   - Targets
