@@ -35,6 +35,9 @@ sloth generate -p ./sloth-common-sli-plugins -i {MY_SLO_MANIFEST}
   - [slok/go-http-metrics]
     - [🔌 Availability](./plugins/slok-go-http-metrics/availability): Availability SLI based on [slok/go-http-metrics] HTTP requests.
     - [🔌 Latency](./plugins/slok-go-http-metrics/latency): Latency SLI based on [slok/go-http-metrics] HTTP requests.
+  - [opentelemetry/http-server-metrics]
+    - [🔌 Availability](./plugins/opentelemetry-http-server-metrics/availability): Availability SLI based on [opentelemetry/http-server-metrics] HTTP requests.
+    - [🔌 Latency](./plugins/opentelemetry-http-server-metrics/latency): Latency SLI based on [opentelemetry/http-server-metrics] HTTP requests.
 - Kubernetes
   - Apiserver
     - [🔌 Availability](./plugins/kubernetes/apiserver/availability): Availability SLI based on API HTTP requests.
@@ -90,3 +93,4 @@ You can execute these to test it while developing:
 [coredns]: https://coredns.io
 [traefik]: https://traefik.io
 [istio]: https://istio.io
+[opentelemetry/http-server-metrics]: https://opentelemetry.io/docs/specs/semconv/http/http-metrics/#metric-httpserverrequestduration
