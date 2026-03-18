@@ -19,12 +19,12 @@ func TestSLIPlugin(t *testing.T) {
 	}{
 		"Not having a filter and without custom rcode should return a valid query.": {
 			options:  map[string]string{},
-			expQuery: "\nsum(rate(coredns_dns_responses_total{ rcode=~\"SERVFAIL\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{  }[{{.window}}])) > 0)\n",
+			expQuery: "\nsum(rate(coredns_dns_responses_total{ rcode=~\"SERVFAIL\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{  }[{{.window}}])) > 0)\nor on() vector(0)\n",
 		},
 
 		"Not having a filter and with custom rcode should return a valid query.": {
 			options:  map[string]string{"custom_rcode_regex": "(SERVFAIL|FORMERR)"},
-			expQuery: "\nsum(rate(coredns_dns_responses_total{ rcode=~\"(SERVFAIL|FORMERR)\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{  }[{{.window}}])) > 0)\n",
+			expQuery: "\nsum(rate(coredns_dns_responses_total{ rcode=~\"(SERVFAIL|FORMERR)\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{  }[{{.window}}])) > 0)\nor on() vector(0)\n",
 		},
 
 		"custom rcode regex should fail.": {
@@ -34,17 +34,17 @@ func TestSLIPlugin(t *testing.T) {
 
 		"Having a filter and without custom rcode should return a valid query.": {
 			options:  map[string]string{"filter": `k1="v2",k2="v2"`},
-			expQuery: "\nsum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\",rcode=~\"SERVFAIL\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}])) > 0)\n",
+			expQuery: "\nsum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\",rcode=~\"SERVFAIL\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}])) > 0)\nor on() vector(0)\n",
 		},
 
 		"Filter should be sanitized with ','.": {
 			options:  map[string]string{"filter": `k1="v2",k2="v2",`},
-			expQuery: "\nsum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\",rcode=~\"SERVFAIL\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}])) > 0)\n",
+			expQuery: "\nsum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\",rcode=~\"SERVFAIL\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}])) > 0)\nor on() vector(0)\n",
 		},
 
 		"Filter should be sanitized with '{'.": {
 			options:  map[string]string{"filter": `{k1="v2",k2="v2",},`},
-			expQuery: "\nsum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\",rcode=~\"SERVFAIL\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}])) > 0)\n",
+			expQuery: "\nsum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\",rcode=~\"SERVFAIL\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}])) > 0)\nor on() vector(0)\n",
 		},
 
 		"Having a filter and with custom rcode should return a valid query.": {
@@ -52,7 +52,7 @@ func TestSLIPlugin(t *testing.T) {
 				"filter":             `k1="v2",k2="v2"`,
 				"custom_rcode_regex": "(SERVFAIL|FORMERR)",
 			},
-			expQuery: "\nsum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\",rcode=~\"(SERVFAIL|FORMERR)\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}])) > 0)\n",
+			expQuery: "\nsum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\",rcode=~\"(SERVFAIL|FORMERR)\" }[{{.window}}]))\n/\n(sum(rate(coredns_dns_responses_total{ k1=\"v2\",k2=\"v2\" }[{{.window}}])) > 0)\nor on() vector(0)\n",
 		},
 	}
 

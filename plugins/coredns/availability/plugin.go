@@ -20,6 +20,7 @@ var queryTpl = template.Must(template.New("").Option("missingkey=error").Parse(`
 sum(rate(coredns_dns_responses_total{ {{.filterError}}rcode=~"{{.rcodeRegex}}" }[{{"{{.window}}"}}]))
 /
 (sum(rate(coredns_dns_responses_total{ {{.filterTotal}} }[{{"{{.window}}"}}])) > 0)
+or on() vector(0)
 `))
 
 // SLIPlugin will return a query that will return the availability error based on coreDNS rcodes.
